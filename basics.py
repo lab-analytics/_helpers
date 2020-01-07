@@ -1,6 +1,6 @@
 import os, pickle
 
-class rock_info:
+class rock_info(object):
         """this class contains:
                 - basic rock information
                 - method to load and updated rock info
