@@ -6,10 +6,13 @@ class rock_info(object):
                 - method to load and updated rock info
                 """ 
         
-        def __init__(self, labutils_path = './', rock_dict_file = 'rock_dict.pkl'):
+        def __init__(self, rock_dict_path = None, rock_dict_file = 'rock_dict.pkl'):
                 super(rock_info, self).__init__()
                 # load pickle file
-                filepath = os.path.join(labutils_path, '_helpers', rock_dict_file)
+                if rock_dict_path is None:
+                        rock_dict_path = os.path.dirname(__file__)
+                filepath = os.path.join(rock_dict_path, rock_dict_file)
+                # filepath = os.path.join(labutilspath, '_helpers', rock_dict_file)
                 with open(filepath, 'rb') as f:
                         self.rock_dict = pickle.load(f)
                 return
@@ -27,8 +30,10 @@ class rock_info(object):
                         }
                 return
 
-        def update_sample_file(self, filename = 'rock_dict', filepath = './'):
-                filepath = os.path.join(filepath,filename+'.pkl')
+        def update_sample_file(self, filename = 'rock_dict', outpath = None):
+                if outpath is None:
+                        outpath = os.path.dirname(__file__)
+                filepath = os.path.join(outpath,filename+'.pkl')
                 with open(filepath,'wb') as f:
                         pickle.dump(rock_dict, f, protocol=pickle.HIGHEST_PROTOCOL)
                 return
