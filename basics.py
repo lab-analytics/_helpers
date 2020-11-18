@@ -35,5 +35,5 @@ class rock_info(object):
                         outpath = os.path.dirname(__file__)
                 filepath = os.path.join(outpath,filename+'.pkl')
                 with open(filepath,'wb') as f:
-                        pickle.dump(rock_dict, f, protocol=pickle.HIGHEST_PROTOCOL)
+                        pickle.dump(self.rock_dict, f, protocol=pickle.HIGHEST_PROTOCOL)
                 return
